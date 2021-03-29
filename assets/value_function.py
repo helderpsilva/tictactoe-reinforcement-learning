@@ -1,6 +1,7 @@
 # importar librarias necessarias.
 import numpy as np
 
+#Criação de matriz com jogadas e vencedores
 def status_and_winners_matrix(environment, row=0, column=0):
     matrix = []
     
@@ -20,7 +21,7 @@ def status_and_winners_matrix(environment, row=0, column=0):
 
     return matrix
 
-
+# Definição inicial do valor da função v com base no símbolo
 def value_function(environment, matrix, symbol): 
     V = {}
     for status, winner, finished in matrix:

@@ -3,14 +3,18 @@ import numpy as np
 import pickle
 
 class Human():
-
+    """Criação da entidade humano"""
+    
+    # O símbolo é X ou 0
     def __init__(self, symbol):
         self.symbol = symbol
 
     def make_move(self, environment):
+        """Função responsável por executar jogadas"""
+
         while True:
             
-            move = input("Insere as coordenadas lina,coluna da próxima jogada (l,c=0..2): ")
+            move = input("Please, choose your next play (row, column): ")
             row, column = move.split(',')
             row = int(row)
             column = int(column)
