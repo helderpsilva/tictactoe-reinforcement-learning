@@ -2,7 +2,7 @@ import argparse
 import sys
 import os
 
-from tqdm import trange
+from tqdm import trange, tqdm
 import matplotlib.pyplot as plt
 
 import numpy as np
@@ -54,9 +54,9 @@ def main():
 
 def train (iteration,random = False):
     #create a new game
-    name = input("Please chose a name for this Agent:  ")
+    name = input("\nPlease chose a name for this Agent:  ")
     game = Tictactoe()
-    print('\n[INFO]: Checking all possible moves combinations.')
+    print('\n[INFO]: Checking all possible moves combinations.\n')
     winner_matrix = status_and_winners_matrix(game)
 
     v1 = value_function(game,winner_matrix, 1)
@@ -64,7 +64,7 @@ def train (iteration,random = False):
 
     player_turn = int(input("Please chose your agent turn? (1/2):  "))
     symbol = input("Please chose the symbol for the Agent (X or O):  ")
-    print(f'[INFO]: Creating agent {name} with symbol {symbol}\n')
+    print(f'\n[INFO]: Creating agent {name} with symbol {symbol}\n')
     
     agent_turn = player_turn 
     
@@ -121,7 +121,7 @@ def train (iteration,random = False):
 
     save_agent(agent_name=agent_name, agent_information=agent_information)
 
-    print(f'[INFO]: New agent was saved sucessfully')
+    print(f'[INFO]: New agent was saved sucessfully\n')
     print(f'[INFO]: To play against the new created Agent, you can run the command:\n \tpython run.py -p {agent_name}\n')
 
 
@@ -220,7 +220,7 @@ def create_gym():
     agent_2_victories = 0
     ties = 0
 
-    for i in range(iterations):
+    for i in tqdm(range(iterations),  desc="Competing"):
         player_turn = random.randint(1,2)
         game = Tictactoe()
         play_game(p1,p2,player_turn,game)
@@ -234,6 +234,28 @@ def create_gym():
 
     print(f'\n[GAME RESULTS]: Agent 1 | Victories: {agent_1_victories} | Losses: {iterations-agent_1_victories-ties} | Ties: {ties} | Agent: {choices[first_agent].strip(".pickle")}')
     print(f'[GAME RESULTS]: Agent 2 | Victories: {agent_2_victories} | Losses: {iterations-agent_2_victories-ties} | Ties: {ties} | Agent: {choices[second_agent].strip(".pickle")}')
+
+    if agent_1_victories > agent_2_victories:
+        winner_agent = agent_1_victories
+        winner_agent_name = choices[first_agent].strip(".pickle")
+    else:
+        winner_agent = agent_2_victories
+        winner_agent_name = choices[second_agent].strip(".pickle")
+
+    data = {
+        'Victories' : winner_agent,
+        'Losses' : iterations-winner_agent-ties,
+        "Ties" : ties
+    }
+
+    data_names = list(data.keys())
+    data_values = list(data.values())
+
+
+    plt.bar(data_names, data_values)
+    plt.title(f'{winner_agent_name}')
+    plt.show()
+
 
 if __name__ == "__main__":
     main()
