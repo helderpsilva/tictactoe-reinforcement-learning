@@ -2,7 +2,8 @@
 import numpy as np
 
 class Tictactoe():
-
+    """Criação de um tabuleiro de jogo"""
+    
     def __init__(self):
         self.ROWS = 3
         self.COLUMNS = 3
@@ -13,7 +14,7 @@ class Tictactoe():
         self.o = 1
 
     def reward (self, player):
-        """Reward based on a particular state"""
+        """Função recompensa com base num determinado estado"""
         
         # check if game is over, if not return 0.
         if not self.finished:
@@ -24,7 +25,7 @@ class Tictactoe():
             return 0
     
     def game_status(self, board = None):
-        """Return a tuple containing the current game status"""
+        """Função que retorna um tuple contendo o estado atual do jogo"""
         
         game_status = []
         
@@ -37,25 +38,25 @@ class Tictactoe():
         return tuple(game_status)
 
     def check__winner(self):
-        """Function to check if we have a winner in a given board"""
+        """Função para verificar a existência de vencedores"""
 
         winner = False
         
-        # check for winner in the lines:
+        # verificar a existência de vencedores nas linhas:
         for row in range(self.ROWS):
             if self.board[row,0] != 0:
                 if (self.board[row,0] == (np.sum(self.board[row,:])/3)):
                     self.winner = self.board[row,0]
                     winner = True
 
-        # check for winner in the columns:
+        # verificar a existência de vencedores nas colunas:
         for column in range(self.COLUMNS):
             if self.board[0,column] != 0:
                 if (self.board[0,column] == (np.sum(self.board[:,column])/3)):
                     self.winner = self.board[0,column]
                     winner = True
                 
-        # check for winner diagonally:
+        # verificar a existência de vencedores nas diagonais:
         if self.board[0,0] != 0:
             if self.board[0,0] == ((self.board[0,0] + self.board[1,1] + self.board[2,2])/3):
                 self.winner = self.board[0,0]
@@ -67,8 +68,10 @@ class Tictactoe():
                 winner = True
 
         return winner
-    
+   
     def check_finished(self):
+        """Funçaõ que verifica se um jogo chegou ao fim"""
+        
         if self.check__winner():
             self.finished = True
             return True
@@ -79,7 +82,7 @@ class Tictactoe():
             return False
 
     def print_board(self):
-        """Prints the game board to the terminal."""
+        """Função que imprime o tabuleiro para o terminal"""
 
         print_board = np.array([["","",""],["","",""],["","",""]])
 
@@ -104,9 +107,9 @@ class Tictactoe():
         print("\n")
 
             
-
+# o argumento player_turn funciona em função do jogador 1
 def play_game(p1, p2, player_turn, environment, draw_board=False):
-
+    """Função responsável por iniciar um novo jogo"""
     current_player = None
     while not environment.check_finished():
 
