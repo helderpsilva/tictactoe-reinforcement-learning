@@ -15,8 +15,6 @@
 > **Tic Tac Toe** Jogo e/ou passatempo popular.
 > A origem deste jogo popular é desconhecida, todavia há indícios que indicam que pode ter começado no antigo Egito, onde foram encontrados tabuleiros esculpidos na rocha, que teriam mais de 3.500 anos.
 
-> Algumas lendas urbanas contam que o jogo terá nascido em Portugal, na cidade de Almada no ano 545. No entanto, só foi popularizado no ano 1500, pelo descobridor Pedro Álvares Cabral, que adorava jogar este jogo durante as suas viagens. Álvares Cabral terá decidido que este jogo seria o primeiro a ser ensinado ao povo indígena no Brasil.
-
 >Este projeto aborda o jogo Tic-Tac-Toe usando o método de **reinforcement learning**. Num tabuleiro 3 x 3, o número de estados deste jogo pode ser estimado aproximadamente em 3 ^ 9 = 19.683, um número muito bom para um computador desktop normal.
 
 
