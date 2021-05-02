@@ -33,8 +33,8 @@
 
 ### Treinar um novo agente num ambiente virtual
 
-    python run.py -t 10000             (Treina um agente durante 10000 interações contra um jogador AI)
-    python run.py -t 10000 -r          (Treina um agente durante 10000 interações contra um jogador aleatório)
+    python run.py -t 10000        (Treina um agente durante 10000 interações contra um jogador AI)
+    python run.py -t 10000 -r     (Treina um agente durante 10000 interações contra um jogador aleatório)
 
 ### Jogar contra um agente pré - treinado
 
